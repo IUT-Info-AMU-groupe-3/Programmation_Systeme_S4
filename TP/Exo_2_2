@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int a,b;
+} Toto;
+
+void *fCreation(int x, int y) {
+    Toto *pToto = (Toto *)malloc(sizeof(Toto));
+    pToto -> a  = x;
+    pToto -> b  = y;
+    return (void*)pToto; // typecast vers void*
+}
+
+void fAffichage(void *ptr) {
+    Toto *pToto = (Toto *)ptr; // typecast vers Toto *
+    printf("Toto: %d %d\n",pToto->a,pToto->b);
+}
+
+int main() {
+    void *p = fCreation(1,2);
+    printf("TotoMain: %d %d\n",p->a,p->b);
+    fAffichage(p);
+    free(p);
+    return(0);
+}
